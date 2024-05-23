@@ -22,7 +22,7 @@ class Usuarios extends Controllers
         $data['page_tag'] = "Usuarios - SafeTable";
         $data['page_title'] = "Usuarios - SafeTable";
         $data['page_name'] = "usuarios";
-        $data['page_functions_js'] = "functions_usuarios.js";
+        $data['page_functions_js'] = "funciones_usuarios.js";
         $this->views->getView($this, "usuarios", $data);
     }
 

@@ -26,12 +26,11 @@
  <script src="<?= media(); ?>/js/plugins/sweetalert2.all.min.js"></script>
 
  <!--API Datatable-->
- <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js"></script>
  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
- <script type="text/javascript" src="https://cdn.datatables.net/2.0.0/js/dataTables.js"></script>
- <script type="text/javascript" src="https://cdn.datatables.net/2.0.0/js/dataTables.bootstrap5.js"></script>
- <script type="text/javascript" src="https://cdn.datatables.net/responsive/3.0.0/js/dataTables.responsive.js"></script>
- <script type="text/javascript" src="https://cdn.datatables.net/responsive/3.0.0/js/responsive.bootstrap5.js"></script>
+ <script type="text/javascript" src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+ <script type="text/javascript" src="https://cdn.datatables.net/2.0.7/js/dataTables.bootstrap5.js"></script>
+ <script type="text/javascript" src="https://cdn.datatables.net/responsive/3.0.2/js/dataTables.responsive.js"></script>
+ <script type="text/javascript" src="https://cdn.datatables.net/responsive/3.0.2/js/responsive.bootstrap5.js"></script>
 
  <!--Api DataTable para los botones de expotacion-->
  <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>

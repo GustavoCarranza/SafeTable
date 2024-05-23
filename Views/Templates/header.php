@@ -17,9 +17,9 @@
     <!-- Estilo de letra-->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <!--CSS API DataTable-->
-    <link rel="stylesheet" href="<?= media(); ?>/css/DataTable/bootstrapp.min.css">
-    <link rel="stylesheet" href="<?= media(); ?>/css/DataTable/dataTables.bootstrap5.css">
-    <link rel="stylesheet" href="<?= media(); ?>/css/DataTable/responsive.bootstrap5.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.2/css/responsive.bootstrap5.css">
     <!--CSS SweetAlert2-->
     <link rel="stylesheet" href="<?= media(); ?>/css/plugins/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

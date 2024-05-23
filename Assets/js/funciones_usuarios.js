@@ -42,7 +42,11 @@ function registrosUsuarios() {
       { data: "status", className: "text-center" },
       { data: "options", className: "text-center", orderable: false },
     ],
-    dom: "lBfrtip",
+    dom:
+    "<'row'<'col-12 mb-3'B>>" + // Botones de exportación
+    "<'row'<'col-12 mb-2'<<'col-12 mb-2'l> <<'col-12'f>>>>" + // Selector de longitud y cuadro de búsqueda
+    "<'row'<'col-12 mb-4'tr>>" + // Tabla
+    "<'row'<'col-12'p>>", // Paginación
     buttons: [
       {
         extend: "copyHtml5",
