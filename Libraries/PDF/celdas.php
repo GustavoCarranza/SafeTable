@@ -52,6 +52,47 @@ class PDF extends FPDF
         $this->Ln($h);
     }
 
+    function RowCeldasUsuarios($data)
+    {
+        // Calculate the height of the row
+        $nb = 0;
+        for ($i = 0; $i < count($data); $i++)
+            $nb = max($nb, $this->NbLines($this->widths[$i], $data[$i]));
+        $h = 6 * $nb;
+        // Issue a page break first if needed
+        $this->CheckPageBreak($h);
+        // Draw the cells of the row
+        for ($i = 0; $i < count($data); $i++) {
+            $w = $this->widths[$i];
+            $a = isset($this->aligns[$i]) ? $this->aligns[$i] : 'C';
+            // Save the current position
+            $x = $this->GetX();
+            $y = $this->GetY();
+
+            // Check if the current cell corresponds to the Estado column
+            if ($i == 5) { // Assuming Estado column is the 6th column (0-indexed)
+                // Set the background color for the Estado column
+                $this->SetFillColor(255, 255, 255); // Gray background for Estado column
+                $this->Rect($x, $y, $w, $h, 'F'); // Fill the cell with the background color
+
+                // Set the border color for the Estado column
+                $this->SetDrawColor(0); // Black border for Estado column
+                $this->Rect($x, $y, $w, $h); // Draw the border for Estado column
+            } else {
+                // Draw the border for other columns
+                $this->Rect($x, $y, $w, $h);
+            }
+
+            // Print the text
+            $this->MultiCell($w, 6, $data[$i], 0, $a);
+
+            // Put the position to the right of the cell
+            $this->SetXY($x + $w, $y);
+        }
+        // Go to the next line
+        $this->Ln($h);
+    }
+    
     function CheckPageBreak($h)
     {
         // If the height h would cause an overflow, add a new page immediately

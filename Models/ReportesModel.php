@@ -49,4 +49,18 @@ class ReportesModel extends Mysql
         $request = $this->select_All($sql);
         return $request;
     }
+    
+    //Metodo para reporte de destinations
+    public function selectReservasDestinations($destination, $inicio, $final)
+    {
+         // asignamos los valores de los parametros a las propiedades 
+         $this->intRestaurante = $destination;
+         $this->strFechaInicial = $inicio;
+         $this->strFechaFinal = $final;
+ 
+         // Construir la consulta SQL
+         $sql = "SELECT rd.destinationid,d.iddestinations,d.nombre, rd.huesped, rd.apellidos, rd.villa, rd.hotel, rd.adultos, rd.kids, rd.fecha_reserva, rd.horario_reserva, rd.comentarios, rd.userCreate FROM reservas_destinations rd INNER JOIN destinations d ON rd.destinationid = d.iddestinations WHERE d.nombre = '$this->intRestaurante' AND rd.fecha_reserva BETWEEN '$this->strFechaInicial' AND '$this->strFechaFinal' AND rd.status = 1 ORDER BY rd.fecha_reserva";
+         $request = $this->select_All($sql);
+         return $request;
+    }
 }
