@@ -143,6 +143,29 @@ class UsuariosModel extends Mysql
         return $request;
     }
 
+    //Metodo para exportar usuarios
+    public function usuariosReporte()
+    {
+        $sql = "SELECT u.iduser,u.nombres,u.apellidos,u.correo,u.usuario,u.rolid,u.status,r.idrol,r.nombre as nombreRol,
+        CONCAT(DAY(u.dateCreated), ' de ', 
+        CASE MONTH(u.dateCreated)
+            WHEN 1 THEN 'enero'
+            WHEN 2 THEN 'febrero'
+            WHEN 3 THEN 'marzo'
+            WHEN 4 THEN 'abril'
+            WHEN 5 THEN 'mayo'
+            WHEN 6 THEN 'junio'
+            WHEN 7 THEN 'julio'
+            WHEN 8 THEN 'agosto'
+            WHEN 9 THEN 'septiembre'
+            WHEN 10 THEN 'octubre'
+            WHEN 11 THEN 'noviembre'
+            WHEN 12 THEN 'diciembre'
+        END, ' del ', YEAR(u.dateCreated)) AS fechaCreacion,DATE_FORMAT(u.dateCreated, '%h:%i:%s %p') AS horaCreacion FROM users u INNER JOIN roles r ON u.rolid = r.idrol WHERE u.status != 0";
+        $request = $this->select_All($sql);
+        return $request;
+    }
+
     //Metodo para actualizar la informacion del perfil del usuario 
     public function updatePerfil(int $idusuario, string $nombre, string $apellidos, string $correo, string $usuario)
     {

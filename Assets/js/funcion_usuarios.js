@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fntAgregarUsuarios();
   validarCamposTexto();
   fntRolesUsuario();
+  reporteUsuarios();
 });
 
 //Funcion para los registros de la tabla usuarios
@@ -25,9 +26,6 @@ function registrosUsuarios() {
     lengthMenu: [5, 10, 25, 50],
     pageLength: 5,
     order: [[0, "asc"]],
-    language: {
-      url: "//cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json",
-    },
     ajax: {
       url: Base_URL + "/Usuarios/getUsuarios",
       dataSrc: "",
@@ -595,4 +593,38 @@ function btnDeletedUser(iduser) {
       };
     }
   });
+}
+
+//Funcion para expotar los usuarios a pdf 
+function reporteUsuarios(){
+//creamos uan variable para capturar el id del boton del pdf
+const formReporte = document.getElementById('btnPDFUsuarios');
+//A la variable le agregamos un evento de tipo submit
+formReporte.onsubmit = (e) => {
+    e.preventDefault();
+    //Creamos nuestro fetch el cual nos sirve para mandar solicitudes HTTP al servidor web y nos devolvera una respuesta que podremos manipular 
+    fetch(Base_URL + '/Usuarios/getReporte', {
+        method: "POST",
+        body: new FormData(formReporte),
+    })
+    //Cuando la solicitud se completa invocamos al metodo blob lo que hace es que la respuesta que nos convierte en un objeto que representa datos binarios
+    .then((response) => response.blob())
+    //Y cuando se ha obtenido de manera correcta el blob sin marcar errores se ejecuta en el bloque del codigo
+    .then((blob) => {
+        //Creamos una variable y almacenamos un URL de objeto para el blob del pdf, estamos utilizando la funcion createObjectURl y le pasamos el blob, esta URL es temporal y se utilizara para crear el enlace de descarga
+        const pdfURL = URL.createObjectURL(blob);
+        //Crear una constante y se almacena un nuevo elemento de tipo a en el DOM 
+        const link = document.createElement("a");
+        link.href = pdfURL;
+        link.download = "Lista de usuarios.pdf";
+        //Agregar el enlace al documento y hacer clic en el para iniciar la descarga, la funcion appendchild lo que hace es agregar un nodo hijo al final de la lista, en este caso lo estamos utilizando para agregar el enlace recien creado al cuerpo del documento HTML
+        document.body.appendChild(link);
+        //finalmente se simula un click en el enlace y procede a la descarga
+        link.click();
+    })
+    .catch((error) => {
+        //Manejar errores de red u otros errres de servidor
+        console.error("Error: ", error);
+    });
+}
 }

@@ -22,7 +22,7 @@ class Usuarios extends Controllers
         $data['page_tag'] = "Usuarios - SafeTable";
         $data['page_title'] = "Usuarios - SafeTable";
         $data['page_name'] = "usuarios";
-        $data['page_functions_js'] = "funciones_usuarios.js";
+        $data['page_functions_js'] = "funcion_usuarios.js";
         $this->views->getView($this, "usuarios", $data);
     }
 
@@ -232,6 +232,62 @@ class Usuarios extends Controllers
         }
         die();
     }
+
+    //Metodo para exportar lista de usuarios
+    public function getReporte()
+    {
+        //Incluir el archivo de funciones auxiliares que contiene la funcion celdas()
+        Celdas();
+
+        //Crear una nueva instancia de FPDF con orientacion horizontal
+        $pdf = new PDF('L', 'mm', 'Letter');
+        //Configurar fuente y tamaño de texto
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->AliasNbPages();
+        //Invocamos al modelo para obtener la lista de usuarios 
+        $resultado = $this->model->usuariosReporte();
+        //Verificamos si se recibio respuesta por parte del modelo
+        if ($resultado) {
+            // Agregamos una página al PDF
+            $pdf->AddPage();
+            
+            $pdf->Image(media() . '/images/banyan.png', 10, 1, 25);
+            $pdf->Image(media() . '/images/banyan.png', $pdf->GetPageWidth() - 40, 1, 25);
+            // Configuramos el encabezado de la tabla en el PDF
+            $pdf->CellHeader(0, 20, "Lista de usuarios en sistema", 0, 1, 'C');
+
+            // Configuramos el ancho de las columnas para el formato horizontal
+            $pdf->SetWidths([35, 35, 50, 25, 45, 65]);
+
+            // Definimos los encabezados de la tabla
+            $encabezados = ['Names', 'Surnames', 'E-mail', 'User', 'Rol', 'Date and time of Creation'];
+            $encabezados_decodificados = array_map('utf8_decode', $encabezados);
+
+            // Agregamos los encabezados al PDF con la función Row
+            $pdf->Row($encabezados_decodificados);
+
+            // Iteramos sobre los resultados y agregamos filas al PDF
+            foreach ($resultado as $row) {
+                $dat = [
+                    utf8_decode($row['nombres']),
+                    utf8_decode($row['apellidos']),
+                    utf8_decode($row['correo']),
+                    utf8_decode($row['usuario']),
+                    utf8_decode($row['nombreRol']),
+                    utf8_decode($row['fechaCreacion']. ' '. $row['horaCreacion']),
+                ];
+                $pdf->RowCeldasUsuarios($dat);
+            }
+        } else {
+            // Imprimimos un mensaje si no hay usuarios registrados
+            $pdf->AddPage();
+            $pdf->CellHeader(0, 20, "No hay usuarios", 0, 1, 'C');
+        }
+
+        // Generamos la salida del PDF
+        $pdf->Output();
+    }
+
 
     //Vista perfil de usuario 
     public function perfil()
