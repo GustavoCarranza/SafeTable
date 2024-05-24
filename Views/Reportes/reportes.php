@@ -1,4 +1,4 @@
-<?php 
+<?php
 headerAdmin($data);
 getModal("modalReportes", $data);
 ?>
@@ -19,15 +19,20 @@ getModal("modalReportes", $data);
 
 <!--Botones-->
 <div class="container mb-3">
-        <div class="row">
-            <div class="col-12 col-sm-auto mb-2">
-                <?php if($_SESSION['permisosModulo']['w']){?>
-                <button type="button" class="btn btn-block" style="background: #ADBC9F; color:#fff;" id="btnModalReportes"><i class="fas fa-user-plus"></i> Reportes </button>
-                <?php } ?>
-            </div>
+    <div class="row">
+        <div class="col-12 col-sm-auto mb-2">
+            <?php if ($_SESSION['permisosModulo']['w']) { ?>
+                <button type="button" class="btn btn-block" style="background: #ADBC9F; color:#fff;" id="btnModalReportes"><i class="fas fa-file-alt"></i> Reporte Restaurantes </button>
+            <?php } ?>
+        </div>
+        <div class="col-12 col-sm-auto mb-2">
+            <?php if ($_SESSION['permisosModulo']['w']) { ?>
+                <button type="button" class="btn btn-block" style="background: #ADBC9F; color:#fff;" id="ModalDestinations"><i class="fas fa-file-alt"></i> Reporte Destinations </button>
+            <?php } ?>
         </div>
     </div>
-    <!--Fin-->
+</div>
+<!--Fin-->
 
 <!--Contenido de los graficos-->
 <div class="container-fluid">
