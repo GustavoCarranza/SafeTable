@@ -79,6 +79,8 @@ class Reportes extends Controllers
                     if ($resultado) {
                         // Agregar una página al PDF
                         $pdf->AddPage();
+                        $pdf->Image(media() . '/images/banyan.png', 10, 1, 25);
+                        $pdf->Image(media() . '/images/banyan.png', $pdf->GetPageWidth() - 40, 1, 25);
                         // Configurar el encabezado de la tabla en el PDF
                         $pdf->CellHeader(0, 20, "Reservaciones para $restaurante", 0, 1, 'C');
                         // Configurar el ancho de las columnas

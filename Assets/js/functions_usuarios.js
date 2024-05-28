@@ -103,6 +103,7 @@ function fntRolesUsuario() {
     : new ActiveXObject("Microsoft.XMLHTTP");
   //Creamos una varaible donde le almacenados el metodo del helper donde esta la ruta raiz del proyecto y le concatenamos el controlador a ocupar y el metodo a crear
   var ajaxUrl = Base_URL + "/Roles/getSelectRoles";
+  console.log(Base_URL);
   request.open("GET", ajaxUrl, true);
   request.send();
   //con la variable request agregamos un evento para monitorear el progreso de la solicitud XMLHttpRequest y manejar la respuesta recibida del servidor

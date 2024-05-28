@@ -25,9 +25,6 @@ getModal("modalRestaurantes", $data);
                 <button class="btn btn-success btn-block" id="btnAgregarRerservas"><i class="fas fa-plus"></i> Agregar </button>
             <?php } ?>
         </div>
-        <div class="col-12 col-sm-auto mb-2">
-            <button class="btn btn-primary btn-block"><i class="fas fa-book"></i> Reservaciones </button>
-        </div>
     </div>
 </div>
 <!--Fin-->

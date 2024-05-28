@@ -25,9 +25,6 @@ getModal('modalRoles', $data);
                 <button class="btn btn-block" style="background: #ADBC9F; color:#fff;" id="btnModalRoles"><i class="fas fa-plus"></i> Agregar </button>
             <?php } ?>
         </div>
-        <div class="col-12 col-sm-auto mb-2">
-            <button class="btn btn-block" style="background:#7E0000; color:#fff;"><i class="fas fa-file-pdf"></i> PDF </button>
-        </div>
     </div>
 </div>
 <!--Fin-->

@@ -7,7 +7,6 @@ class Usuarios extends Controllers
         parent::__construct();
         //validar la variable de sesion una vez logueados que esta creada en el controlador Login
         sessionStart();
-        session_regenerate_id(true);
         if (empty($_SESSION['login'])) {
             header('location: ' . BASE_URL() . '/login');
         }
@@ -22,7 +21,7 @@ class Usuarios extends Controllers
         $data['page_tag'] = "Usuarios - SafeTable";
         $data['page_title'] = "Usuarios - SafeTable";
         $data['page_name'] = "usuarios";
-        $data['page_functions_js'] = "funcion_usuarios.js";
+        $data['page_functions_js'] = "functions_usuarios.js";
         $this->views->getView($this, "usuarios", $data);
     }
 
